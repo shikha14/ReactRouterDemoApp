@@ -1,5 +1,10 @@
 import React from "react";
 import {render} from "react-dom";
+import {Root} from "./components/Root";
+import { Router , Route , browserHistory,IndexRoute} from "react-router";
+
+import User from "./components/User";
+import Home from "./components/Home";
 
 
 
@@ -7,9 +12,13 @@ import {render} from "react-dom";
 class App extends React.Component {
     render() {
         return (
-           <div>
-               <h1>Hello from React Router </h1>
-           </div>
+            <Router history={browserHistory}>
+                <Route path={"/"} component={Root}>
+                    <IndexRoute component={Home}/>
+                    <Route path={"user/:id"} component={User}/>
+                    <Route path={"home"} component={Home}/>
+                </Route>
+            </Router>
     );
     }
 }
